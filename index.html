@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<title>FANDOM VERSE - Explore the Multiverse</title>
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+		rel="stylesheet">
+	<script>
+		tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { cyan: '#00f2fe', purple: '#8a2be2', pink: '#ff007f', neonGreen: '#00ffcc' } }, fontFamily: { orbitron: ['Orbitron', 'Arial', 'sans-serif'], rajdhani: ['Rajdhani', 'Arial', 'sans-serif'], sans: ['Inter', 'Arial', 'sans-serif'] } } } }
+	</script>
+	<style>
+		:root {
+			padding-top: env(safe-area-inset-top, 0px);
+			padding-bottom: env(safe-area-inset-bottom, 0px);
+			box-sizing: border-box
+		}
+
+		html {
+			scroll-behavior: smooth;
+			scroll-padding-top: 80px
+		}
+
+		body {
+			background-color: #06070a;
+			color: #e2e8f0;
+			background-image: radial-gradient(circle at 15% 20%, rgba(138, 43, 226, .12) 0, transparent 40%), radial-gradient(circle at 85% 60%, rgba(0, 242, 254, .1) 0, transparent 40%), radial-gradient(circle at 50% 90%, rgba(255, 0, 127, .08) 0, transparent 50%);
+			background-attachment: fixed
+		}
+
+		.glass-panel {
+			background: rgba(15, 20, 32, .65);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			border: 1px solid rgba(255, 255, 255, .08)
+		}
+
+		.glass-card {
+			background: rgba(20, 26, 40, .6);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border: 1px solid rgba(255, 255, 255, .08);
+			transition: all .4s cubic-bezier(.175, .885, .32, 1.275)
+		}
+
+		.glass-card:hover {
+			transform: translateY(-6px);
+			border-color: #00f2fe;
+			box-shadow: 0 10px 30px -10px rgba(0, 242, 254, .35)
+		}
+
+		.neon-text-cyan {
+			text-shadow: 0 0 10px rgba(0, 242, 254, .6)
+		}
+
+		.neon-btn {
+			position: relative;
+			overflow: hidden
+		}
+
+		.spoiler-hidden {
+			filter: blur(8px) grayscale(80%);
+			user-select: none;
+			transition: filter .3s
+		}
+
+		.spoiler-hidden:hover {
+			filter: none
+		}
+
+		::-webkit-scrollbar {
+			width: 8px
+		}
+
+		::-webkit-scrollbar-track {
+			background: #06070a
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: #1e293b;
+			border-radius: 4px
+		}
+	</style>
+</head>
+
+<body class="font-sans min-h-screen flex flex-col">
+
+	<nav class="sticky top-0 z-50 glass-panel border-b border-white/10 px-4 lg:px-8 py-3">
+		<div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+			<a href="#" class="flex items-center gap-3">
+				<div
+					class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-purple to-brand-cyan flex items-center justify-center">
+					<i class="fa-solid fa-atom text-white text-xl"></i></div>
+				<div><span class="font-orbitron font-black text-xl tracking-wider text-white">FANDOM<span
+							class="text-brand-cyan neon-text-cyan">VERSE</span></span>
+					<span class="block text-[10px] font-rajdhani tracking-widest text-gray-400 uppercase">Multiverse
+						Archives</span>
+				</div>
+			</a>
+			<div
+				class="hidden lg:flex items-center gap-5 font-rajdhani font-bold text-sm tracking-wider uppercase text-gray-300">
+				<a href="#movies" class="hover:text-brand-cyan">Movies</a><a href="#play"
+					class="hover:text-brand-cyan">Play</a><a href="#download"
+					class="hover:text-brand-cyan">Download</a><a href="#live" class="hover:text-brand-cyan">Live</a>
+				<div class="relative"><i
+						class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+					<input id="searchInput" oninput="executeSearch(this.value.toLowerCase())" placeholder="Search..."
+						class="w-44 bg-white/5 border border-white/10 rounded-full py-1.5 pl-8 pr-3 text-xs text-white normal-case focus:outline-none focus:border-brand-cyan">
+				</div>
+			</div>
+			<div class="flex items-center gap-2">
+				<button onclick="toggleEye()"
+					class="glass-panel text-xs font-rajdhani font-bold px-3 py-2 rounded-lg text-gray-300 hover:text-brand-cyan flex items-center gap-2"><i
+						class="fa-solid fa-eye text-brand-neonGreen"></i><span class="hidden sm:inline">Eye
+						Protection:</span><span id="eyeStatus" class="text-gray-400">OFF</span></button>
+
+				<button onclick="openModal('contribModal')"
+					class="neon-btn bg-gradient-to-r from-brand-purple to-brand-cyan text-white text-sm font-semibold px-3 py-2 rounded-lg"><i
+						class="fa-solid fa-plus"></i><span class="hidden sm:inline ml-1">Contribute</span></button>
+			</div>
+		</div>
+		<div class="mt-3 lg:hidden relative"><i
+				class="fa-solid fa-magnifying-glass absolute left-4 top-3 text-gray-400"></i>
+			<input oninput="executeSearch(this.value.toLowerCase())" placeholder="Search characters, lore..."
+				class="w-full bg-white/5 border border-white/10 rounded-full py-2 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-brand-cyan">
+		</div>
+	</nav>
+
+	<header class="max-w-7xl mx-auto px-4 lg:px-8 pt-8 pb-6 w-full">
+		<div class="rounded-3xl glass-panel p-6 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8"
+			style="background-image:linear-gradient(135deg,rgba(138,43,226,.25),rgba(6,7,10,.6) 60%,rgba(0,242,254,.15))">
+			<div class="max-w-2xl">
+				<div
+					class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/20 border border-brand-purple/40 text-brand-cyan text-xs font-rajdhani font-bold mb-4 tracking-wider uppercase">
+					<i class="fa-solid fa-fire text-brand-pink"></i> Trending Multiverse Lore</div>
+				<h1 class="font-orbitron text-3xl md:text-5xl font-black text-white leading-tight mb-4">EXPLORE THE
+					<span
+						class="bg-gradient-to-r from-brand-cyan via-blue-400 to-brand-purple bg-clip-text text-transparent">ULTIMATE
+						FANDOM</span> ARCHIVES</h1>
+				<p class="text-gray-300 text-sm md:text-base mb-6 font-light">Character power levels, lore timelines,
+					movies and animation, playable online games, downloads and live streams, all in one place.</p>
+				<div class="flex flex-wrap gap-6 border-t border-white/10 pt-4">
+					<div><span class="block font-orbitron text-xl font-bold text-brand-cyan">12.8K+</span><span
+							class="text-xs text-gray-400 uppercase font-rajdhani">Character Profiles</span></div>
+					<div><span class="block font-orbitron text-xl font-bold text-brand-pink">850+</span><span
+							class="text-xs text-gray-400 uppercase font-rajdhani">Lore Timelines</span></div>
+					<div><span class="block font-orbitron text-xl font-bold text-brand-purple">99.4%</span><span
+							class="text-xs text-gray-400 uppercase font-rajdhani">Fan Accuracy</span></div>
+				</div>
+			</div>
+			<div class="w-full md:w-80 glass-card rounded-2xl p-4 border border-brand-cyan/30 flex flex-col gap-3">
+				<div class="text-brand-cyan font-bold text-xs tracking-wider font-rajdhani uppercase"><i
+						class="fa-solid fa-star text-yellow-400"></i> Spotlight Lore</div>
+				<div
+					class="h-36 rounded-xl bg-gradient-to-br from-orange-500 to-blue-700 flex items-center justify-center">
+					<i class="fa-solid fa-bolt text-6xl text-white/80"></i></div>
+				<h4 class="font-orbitron font-bold text-white">Goku (Ultra Instinct)</h4>
+				<p class="text-xs text-gray-400">Mastery of self-movement allowing instant dodging and divine ki
+					manipulation.</p>
+				<button
+					onclick="showLore('Goku (Ultra Instinct)','Dragon Ball Super','Multiverse Realm','Infinite (God Ki)','Ultra Instinct separates consciousness from the body, letting it move and fight independent of thoughts and emotions.')"
+					class="w-full py-2 bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/40 text-brand-cyan text-xs font-bold font-rajdhani rounded-lg tracking-wider">VIEW
+					LORE FILE →</button>
+			</div>
+		</div>
+	</header>
+
+	<main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 w-full flex-grow">
+		<div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+			<div class="flex items-center gap-2 overflow-x-auto pb-2" id="cats"></div>
+			<div class="text-xs text-gray-400 font-rajdhani font-semibold">SHOWING: <span id="cardCount"
+					class="text-brand-cyan font-bold">6</span> ARCHIVES</div>
+		</div>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="fandomGrid"></div>
+
+		<section id="movies" class="mt-16">
+			<div class="text-brand-pink font-rajdhani font-bold text-sm tracking-widest uppercase mb-2"><i
+					class="fa-solid fa-film"></i> Cinema Verse</div>
+			<h2 class="font-orbitron text-2xl md:text-3xl font-black text-white mb-4">MOVIES &amp; ANIMATION</h2>
+			<div class="flex gap-2 mb-6 flex-wrap" id="movieTabs"></div>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="movieGrid"></div>
+		</section>
+
+		<section id="play" class="mt-16">
+			<div class="text-brand-pink font-rajdhani font-bold text-sm tracking-widest uppercase mb-2"><i
+					class="fa-solid fa-gamepad"></i> Play in Browser</div>
+			<h2 class="font-orbitron text-2xl md:text-3xl font-black text-white mb-6">ONLINE GAMES</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				<div class="glass-panel rounded-2xl p-5 text-center">
+					<h3 class="font-orbitron text-lg text-white mb-1">Snake</h3>
+					<p class="text-xs text-gray-400 mb-3">Arrow keys / WASD or buttons. Score: <span id="snScore"
+							class="text-brand-cyan font-bold">0</span></p>
+					<canvas id="snCanvas" width="300" height="300"
+						class="mx-auto rounded-xl border border-brand-cyan/40 bg-black max-w-full"></canvas>
+					<div class="grid grid-cols-3 gap-2 w-40 mx-auto mt-3 text-white">
+						<span></span><button onclick="setDir(0,-1)" class="glass-panel rounded py-2"><i
+								class="fa-solid fa-arrow-up"></i></button><span></span>
+						<button onclick="setDir(-1,0)" class="glass-panel rounded py-2"><i
+								class="fa-solid fa-arrow-left"></i></button>
+						<button onclick="setDir(0,1)" class="glass-panel rounded py-2"><i
+								class="fa-solid fa-arrow-down"></i></button>
+						<button onclick="setDir(1,0)" class="glass-panel rounded py-2"><i
+								class="fa-solid fa-arrow-right"></i></button>
+					</div>
+					<button onclick="snakeStart()"
+						class="neon-btn mt-4 bg-gradient-to-r from-brand-purple to-brand-cyan text-white text-xs font-bold font-rajdhani px-6 py-2 rounded-xl tracking-wider">START
+						/ RESTART</button>
+				</div>
+				<div class="glass-panel rounded-2xl p-5 text-center">
+					<h3 class="font-orbitron text-lg text-white mb-1">Tic-Tac-Toe vs Computer</h3>
+					<p class="text-xs text-gray-400 mb-3">You are X. <span id="tttMsg"
+							class="text-brand-cyan font-bold">Your move</span></p>
+					<div id="tttBoard" class="grid grid-cols-3 gap-2 w-56 mx-auto"></div>
+					<button onclick="tttReset()"
+						class="neon-btn mt-4 bg-gradient-to-r from-brand-purple to-brand-cyan text-white text-xs font-bold font-rajdhani px-6 py-2 rounded-xl tracking-wider">NEW
+						GAME</button>
+				</div>
+			</div>
+		</section>
+
+		<section id="download" class="mt-16">
+			<div class="text-brand-pink font-rajdhani font-bold text-sm tracking-widest uppercase mb-2"><i
+					class="fa-solid fa-download"></i> Get the Games</div>
+			<h2 class="font-orbitron text-2xl md:text-3xl font-black text-white mb-2">DOWNLOAD GAMES</h2>
+			<p class="text-xs text-gray-400 mb-6">Links go to official stores only, so downloads stay safe and legal.
+			</p>
+			<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+				<a href="https://store.steampowered.com/" target="_blank" rel="noopener"
+					class="glass-card rounded-2xl p-5 text-center block"><i
+						class="fa-brands fa-steam text-3xl text-brand-cyan mb-2"></i>
+					<h4 class="font-orbitron text-white text-sm">Steam</h4>
+					<p class="text-[11px] text-gray-400 mt-1">Huge PC library</p>
+				</a>
+				<a href="https://store.epicgames.com/" target="_blank" rel="noopener"
+					class="glass-card rounded-2xl p-5 text-center block"><i
+						class="fa-solid fa-bag-shopping text-3xl text-brand-purple mb-2"></i>
+					<h4 class="font-orbitron text-white text-sm">Epic Games</h4>
+					<p class="text-[11px] text-gray-400 mt-1">Free weekly games</p>
+				</a>
+				<a href="https://itch.io/games/free" target="_blank" rel="noopener"
+					class="glass-card rounded-2xl p-5 text-center block"><i
+						class="fa-solid fa-cube text-3xl text-brand-pink mb-2"></i>
+					<h4 class="font-orbitron text-white text-sm">itch.io</h4>
+					<p class="text-[11px] text-gray-400 mt-1">Free indie games</p>
+				</a>
+				<a href="https://www.gog.com/" target="_blank" rel="noopener"
+					class="glass-card rounded-2xl p-5 text-center block"><i
+						class="fa-solid fa-compact-disc text-3xl text-brand-neonGreen mb-2"></i>
+					<h4 class="font-orbitron text-white text-sm">GOG</h4>
+					<p class="text-[11px] text-gray-400 mt-1">DRM-free classics</p>
+				</a>
+			</div>
+		</section>
+
+		<section id="live" class="mt-16">
+			<div class="text-red-400 font-rajdhani font-bold text-sm tracking-widest uppercase mb-2"><span
+					class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse mr-1"></span> Live Now</div>
+			<h2 class="font-orbitron text-2xl md:text-3xl font-black text-white mb-2">LIVE GAMES</h2>
+			<p class="text-xs text-gray-400 mb-6">Watch live gameplay and esports on these platforms.</p>
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+				<a href="https://www.twitch.tv/directory" target="_blank" rel="noopener"
+					class="glass-card rounded-2xl p-5 flex items-center gap-4"><i
+						class="fa-brands fa-twitch text-3xl text-brand-purple"></i>
+					<div>
+						<h4 class="font-orbitron text-white text-sm">Twitch</h4>
+						<p class="text-[11px] text-gray-400">Live streams by game</p>
+					</div>
+				</a>
+				<a href="https://www.youtube.com/gaming" target="_blank" rel="noopener"
+					class="glass-card rounded-2xl p-5 flex items-center gap-4"><i
+						class="fa-brands fa-youtube text-3xl text-red-500"></i>
+					<div>
+						<h4 class="font-orbitron text-white text-sm">YouTube Gaming</h4>
+						<p class="text-[11px] text-gray-400">Live and replays</p>
+					</div>
+				</a>
+				<a href="https://kick.com/browse" target="_blank" rel="noopener"
+					class="glass-card rounded-2xl p-5 flex items-center gap-4"><i
+						class="fa-solid fa-tower-broadcast text-3xl text-brand-neonGreen"></i>
+					<div>
+						<h4 class="font-orbitron text-white text-sm">Kick</h4>
+						<p class="text-[11px] text-gray-400">Browse live channels</p>
+					</div>
+				</a>
+			</div>
+		</section>
+
+
+	</main>
+
+	<footer class="glass-panel border-t border-white/10 mt-16 py-8 px-4 lg:px-8">
+		<div
+			class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+			<div><span class="font-orbitron font-bold text-lg text-white">FANDOM<span
+						class="text-brand-cyan">VERSE</span></span>
+				<p class="text-xs text-gray-400 mt-1">Built for fans, theorists, and lore keepers across the multiverse.
+				</p>
+			</div>
+			<div class="flex gap-6 text-gray-400"><i class="fa-brands fa-discord text-lg"></i><i
+					class="fa-brands fa-x-twitter text-lg"></i><i class="fa-brands fa-reddit text-lg"></i><i
+					class="fa-brands fa-youtube text-lg"></i></div>
+			<div class="text-xs text-gray-500 font-rajdhani">&copy; 2026 Fandom Verse Hub. Non-commercial fan archives.
+			</div>
+		</div>
+	</footer>
+
+	<div id="loreModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+		<div class="glass-panel rounded-3xl max-w-xl w-full border border-brand-cyan/40 p-6 relative">
+			<button onclick="closeModal('loreModal')"
+				class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 text-white"><i
+					class="fa-solid fa-xmark"></i></button>
+			<h2 id="mTitle" class="font-orbitron text-2xl font-bold text-white pr-10"></h2>
+			<p id="mFran" class="text-xs text-brand-cyan font-rajdhani font-semibold mb-4"></p>
+			<div class="grid grid-cols-2 gap-3 mb-4 bg-white/5 p-3 rounded-xl border border-white/10 text-xs">
+				<div><span class="text-gray-400 block font-rajdhani">ORIGIN REALM:</span><span id="mOrigin"
+						class="text-white font-bold"></span></div>
+				<div><span class="text-gray-400 block font-rajdhani">POWER TIER:</span><span id="mPower"
+						class="text-brand-pink font-bold"></span></div>
+			</div>
+			<p id="mDesc" class="text-xs text-gray-300 leading-relaxed mb-6"></p>
+			<button onclick="closeModal('loreModal')"
+				class="w-full bg-brand-cyan text-black font-rajdhani font-bold py-2.5 rounded-xl">CLOSE ARCHIVE
+				FILE</button>
+		</div>
+	</div>
+
+	<div id="contribModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+		<div class="glass-panel rounded-3xl max-w-lg w-full border border-brand-purple/40 p-6 relative">
+			<button onclick="closeModal('contribModal')"
+				class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 text-white"><i
+					class="fa-solid fa-xmark"></i></button>
+			<h2 class="font-orbitron text-xl font-bold text-white mb-1">Contribute to Fandom Verse</h2>
+			<p class="text-xs text-gray-400 mb-4">Submit fan theories, character updates, or new verse archives.</p>
+			<form
+				onsubmit="event.preventDefault();closeModal('contribModal');showToast('Lore submission received! Pending archivist review.')"
+				class="flex flex-col gap-3">
+				<input required placeholder="Character / Lore Title"
+					class="bg-white/5 border border-white/10 rounded-xl p-2.5 text-xs text-white">
+				<select class="bg-white/10 border border-white/10 rounded-xl p-2.5 text-xs text-white">
+					<option class="bg-gray-900">Anime Verse</option>
+					<option class="bg-gray-900">Gaming Verse</option>
+					<option class="bg-gray-900">Comic / Hero Verse</option>
+					<option class="bg-gray-900">Sci-Fi Verse</option>
+				</select>
+				<textarea required rows="4" placeholder="Write lore summary or fan theory..."
+					class="bg-white/5 border border-white/10 rounded-xl p-2.5 text-xs text-white"></textarea>
+				<button
+					class="bg-gradient-to-r from-brand-purple to-brand-cyan text-white text-xs font-bold font-rajdhani py-3 rounded-xl tracking-wider">SUBMIT
+					TO ARCHIVISTS</button>
+			</form>
+		</div>
+	</div>
+
+	<div id="toast"
+		class="fixed bottom-6 right-6 z-[70] glass-panel border border-brand-cyan/50 text-white px-4 py-3 rounded-xl flex items-center gap-3 translate-y-24 opacity-0 transition-all duration-300">
+		<i class="fa-solid fa-circle-check text-brand-cyan"></i><span id="toastMsg"
+			class="text-xs font-rajdhani font-semibold"></span></div>
+
+	<div id="eyeShield" class="fixed inset-0 z-[60] pointer-events-none hidden"
+		style="background:rgba(255,150,40,.22);mix-blend-mode:multiply"></div>
+	<div id="eyeDim" class="fixed inset-0 z-[60] pointer-events-none hidden" style="background:rgba(0,0,0,.12)"></div>
+
+	<script>
+		const $ = id => document.getElementById(id);
+		function toast(m) { }
+		function showToast(m) { const t = $('toast'); $('toastMsg').innerText = m; t.classList.remove('translate-y-24', 'opacity-0'); clearTimeout(showToast.t); showToast.t = setTimeout(() => t.classList.add('translate-y-24', 'opacity-0'), 3000) }
+		function openModal(i) { $(i).classList.remove('hidden') }
+		function closeModal(i) { $(i).classList.add('hidden') }
+
+		/* Eye protection */
+		let eyeOn = false;
+		function setEye(on) { eyeOn = on; $('eyeShield').classList.toggle('hidden', !on); $('eyeDim').classList.toggle('hidden', !on); const s = $('eyeStatus'); s.innerText = on ? 'ON' : 'OFF'; s.className = on ? 'text-brand-neonGreen' : 'text-gray-400'; try { localStorage.setItem('eyeProtect', on ? '1' : '0') } catch (e) { } }
+		function toggleEye() { setEye(!eyeOn); showToast(eyeOn ? 'Eye protection ON: warm, dimmed screen.' : 'Eye protection OFF.') }
+		try { if (localStorage.getItem('eyeProtect') === '1') setEye(true) } catch (e) { }
+
+		/* Lore cards */
+		const cards = [
+			['anime', 'Saitama (Caped Baldy)', 'One-Punch Man • Hero Association', 'Infinite', 'Broke his limiter with 100 pushups, 100 situps, 100 squats and a 10km run daily.', '4.9k', 'Z-City', 'Saitama has unrivaled strength, speed and invulnerability. No enemy has withstood a serious strike.', 'from-yellow-400 to-red-600', 'fa-hand-fist', 'One Punch Man Saitama'],
+			['gaming', 'Kratos (Ghost of Sparta)', 'God of War • Norse Realm', 'God Slayer', 'Destroyed the Greek Pantheon before traveling to Midgard. Wields the Leviathan Axe and Blades of Chaos.', '6.2k', 'Sparta / Midgard', 'Kratos is a demigod who defeated Ares. In the Norse realm he seeks peace with his son Atreus while defying fate.', 'from-red-700 to-gray-900', 'fa-shield-halved', 'Kratos God of War'],
+			['superhero', 'Spider-Man (Earth-616)', 'Marvel Universe • Avengers', 'Class 10+ Spider', 'Bitten by a radioactive spider. Has a precognitive Spider-Sense and proportional arachnid agility.', '8.1k', 'Queens, New York', 'Peter Parker gained spider powers and protects New York, guided by great power and great responsibility.', 'from-red-500 to-blue-800', 'fa-spider', 'Spider-Man Peter Parker Marvel'],
+			['scifi', 'V (Night City Legend)', 'Cyberpunk 2077 • Afterlife Merc', 'Cybernetic IX', 'Implanted with the Relic biochip holding the digital psyche of Johnny Silverhand.', '3.5k', 'Night City', 'V is a mercenary armed with top-tier cyberware like the Sandevistan and Mantis Blades.', 'from-cyan-500 to-purple-800', 'fa-robot', 'Cyberpunk Cyberware Cybernetic'],
+			['anime', 'Eren Yeager', 'Attack on Titan • Eldia', 'Founding Titan', 'Initiated the global Rumbling using millions of Wall Titans to protect Paradis Island.', '5.7k', 'Paradis Island', 'Eren was a Survey Corps member who inherited the Attack Titan and later the Founding Titan.', 'from-orange-500 to-stone-900', 'fa-person-rifle', 'Eren Yeager Attack on Titan'],
+			['gaming', 'Malenia, Goddess of Rot', 'Elden Ring • Haligtree', 'Goddess of Rot', 'Never knew defeat. Unleashed the Scarlet Rot on Radahn during the Shattering war.', '7.4k', 'Elphael, Haligtree', 'Malenia is a demigod born with Scarlet Rot who wields a prosthetic arm and a colossal katana.', 'from-amber-400 to-rose-800', 'fa-feather', 'Elden Ring Malenia Blade of Miquella']];
+		const cats = [['all', 'fa-globe', 'All Verses', ''], ['anime', 'fa-dragon', 'Anime Verse', 'text-red-400'], ['gaming', 'fa-gamepad', 'Gaming Verse', 'text-purple-400'], ['superhero', 'fa-mask', 'Comic / Hero Verse', 'text-yellow-400'], ['scifi', 'fa-robot', 'Sci-Fi Verse', 'text-cyan-400']];
+		let cat = 'all', q = '', shield = false;
+		function esc(s) { return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'") }
+		function renderCats() { $('cats').innerHTML = cats.map(c => '<button onclick="cat=\'' + c[0] + '\';render()" class="px-5 py-2.5 rounded-xl font-rajdhani font-bold text-sm tracking-wider uppercase border whitespace-nowrap ' + (cat === c[0] ? 'bg-brand-cyan text-black border-brand-cyan' : 'glass-panel text-gray-300 border-white/10 hover:border-brand-cyan') + '"><i class="fa-solid ' + c[1] + ' mr-1 ' + (cat === c[0] ? '' : c[3]) + '"></i> ' + c[2] + '</button>').join('') }
+		function render() {
+			renderCats(); const list = cards.filter(c => (cat === 'all' || c[0] === cat) && (c[1] + ' ' + c[10]).toLowerCase().includes(q)); $('cardCount').innerText = list.length;
+			$('fandomGrid').innerHTML = list.map(c => '<div class="glass-card rounded-2xl overflow-hidden flex flex-col"><div class="relative h-48 bg-gradient-to-br ' + c[8] + ' flex items-center justify-center"><i class="fa-solid ' + c[9] + ' text-7xl text-white/80"></i><span class="absolute top-3 right-3 bg-black/75 text-cyan-300 border border-white/20 px-3 py-1 rounded-full text-xs font-bold font-rajdhani uppercase">' + c[0] + ' verse</span><span class="absolute bottom-3 left-3 bg-black/70 text-white px-2.5 py-0.5 rounded text-[11px] font-bold">Power: ' + c[3] + '</span></div><div class="p-5 flex flex-col justify-between flex-grow"><div><h3 class="font-orbitron text-xl font-bold text-white mb-1">' + c[1] + '</h3><p class="text-xs text-brand-cyan font-rajdhani font-semibold uppercase tracking-wider mb-3">' + c[2] + '</p><p class="spoiler-target ' + (shield ? 'spoiler-hidden' : '') + ' text-xs text-gray-300 leading-relaxed mb-4"><span class="text-brand-pink font-bold">[SPOILER]:</span> ' + c[4] + '</p></div><div class="pt-3 border-t border-white/10 flex items-center justify-between"><span class="text-xs text-gray-400"><i class="fa-solid fa-heart text-brand-pink"></i> ' + c[5] + ' Likes</span><button onclick="showLore(\'' + esc(c[1]) + '\',\'' + esc(c[2].split(' • ')[0]) + '\',\'' + esc(c[6]) + '\',\'' + esc(c[3]) + '\',\'' + esc(c[7]) + '\')" class="text-brand-cyan hover:text-white text-xs font-bold font-rajdhani tracking-wider">EXPLORE LORE <i class="fa-solid fa-arrow-right"></i></button></div></div></div>').join('')
+		}
+		function executeSearch(v) { q = v.toLowerCase(); render() }
+		function showLore(t, f, o, p, d) { $('mTitle').innerText = t; $('mFran').innerText = f; $('mOrigin').innerText = o; $('mPower').innerText = p; $('mDesc').innerText = d; openModal('loreModal') }
+		function toggleSpoilerShield() { shield = !shield; const s = $('spoilerStatus'); s.innerText = shield ? 'ON' : 'OFF'; s.className = shield ? 'text-brand-pink' : 'text-brand-cyan'; render(); showToast(shield ? 'Spoiler Shield Activated! Hover to reveal.' : 'Spoiler Shield Disabled!') }
+		render();
+
+		/* Movies */
+		const movies = [['Spirited Away', 'Studio Ghibli, 2001', 'anime', 'from-teal-600 to-blue-900', 'fa-dragon'], ['Your Name', 'Makoto Shinkai, 2016', 'anime', 'from-pink-500 to-indigo-900', 'fa-star'], ['Demon Slayer: Mugen Train', 'Ufotable, 2020', 'anime', 'from-red-600 to-gray-900', 'fa-fire'], ['Spider-Man: Into the Spider-Verse', 'Sony Animation, 2018', 'hollywood', 'from-red-500 to-purple-900', 'fa-spider'], ['Coco', 'Pixar, 2017', 'hollywood', 'from-orange-500 to-purple-800', 'fa-guitar'], ['Interstellar', 'Christopher Nolan, 2014', 'hollywood', 'from-cyan-600 to-slate-900', 'fa-rocket']];
+		let mt = 'all'; const wl = new Set();
+		function renderMovies() {
+			$('movieTabs').innerHTML = [['all', 'All'], ['anime', 'Anime Movies'], ['hollywood', 'Hollywood']].map(t => '<button onclick="mt=\'' + t[0] + '\';renderMovies()" class="px-4 py-2 rounded-xl font-rajdhani font-bold text-xs tracking-wider uppercase border ' + (mt === t[0] ? 'bg-brand-cyan text-black border-brand-cyan' : 'glass-panel text-gray-300 border-white/10') + '">' + t[1] + '</button>').join('');
+			$('movieGrid').innerHTML = movies.filter(m => mt === 'all' || m[2] === mt).map(m => '<div class="glass-card rounded-2xl overflow-hidden"><div class="h-36 bg-gradient-to-br ' + m[3] + ' flex items-center justify-center"><i class="fa-solid ' + m[4] + ' text-5xl text-white/80"></i></div><div class="p-4"><h4 class="font-orbitron text-white text-sm mb-1">' + m[0] + '</h4><p class="text-[11px] text-brand-cyan font-rajdhani uppercase tracking-wider mb-3">' + m[1] + '</p><button onclick="toggleWatch(\'' + esc(m[0]) + '\')" class="text-xs font-rajdhani font-bold tracking-wider ' + (wl.has(m[0]) ? 'text-brand-neonGreen' : 'text-brand-cyan') + '">' + (wl.has(m[0]) ? '<i class="fa-solid fa-check"></i> IN WATCHLIST' : '<i class="fa-solid fa-plus"></i> ADD TO WATCHLIST') + '</button></div></div>').join('')
+		}
+		function toggleWatch(t) { wl.has(t) ? wl.delete(t) : wl.add(t); renderMovies(); showToast(wl.has(t) ? 'Added to watchlist' : 'Removed from watchlist') }
+		renderMovies();
+
+		/* Snake */
+		const cx = $('snCanvas').getContext('2d'); let sn = [{ x: 10, y: 10 }], dir = { x: 1, y: 0 }, food = { x: 5, y: 5 }, snInt = null, score = 0;
+		function rf() { food = { x: Math.floor(Math.random() * 20), y: Math.floor(Math.random() * 20) } }
+		function drawSnake() { cx.fillStyle = '#05070c'; cx.fillRect(0, 0, 300, 300); cx.fillStyle = '#ff007f'; cx.fillRect(food.x * 15, food.y * 15, 14, 14); cx.fillStyle = '#00f2fe'; sn.forEach(s => cx.fillRect(s.x * 15, s.y * 15, 14, 14)) }
+		function snakeStart() { clearInterval(snInt); sn = [{ x: 10, y: 10 }]; dir = { x: 1, y: 0 }; score = 0; $('snScore').innerText = 0; rf(); snInt = setInterval(snakeTick, 110) }
+		function snakeTick() { const h = { x: sn[0].x + dir.x, y: sn[0].y + dir.y }; if (h.x < 0 || h.y < 0 || h.x > 19 || h.y > 19 || sn.some(s => s.x === h.x && s.y === h.y)) { clearInterval(snInt); snInt = null; showToast('Game over! Score: ' + score); return } sn.unshift(h); if (h.x === food.x && h.y === food.y) { score++; $('snScore').innerText = score; rf() } else sn.pop(); drawSnake() }
+		function setDir(x, y) { if (x !== -dir.x || y !== -dir.y) dir = { x, y } }
+		document.addEventListener('keydown', e => { if (!snInt) return; const k = { ArrowUp: [0, -1], w: [0, -1], ArrowDown: [0, 1], s: [0, 1], ArrowLeft: [-1, 0], a: [-1, 0], ArrowRight: [1, 0], d: [1, 0] }[e.key]; if (k) { e.preventDefault(); setDir(k[0], k[1]) } });
+		drawSnake();
+
+	
+		let tb, tOver; const L = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+		const won = (b, p) => L.some(l => l.every(i => b[i] === p));
+		function tttReset() { tb = Array(9).fill(''); tOver = false; $('tttMsg').innerText = 'Your move'; tttRender() }
+		function tttRender() { $('tttBoard').innerHTML = tb.map((c, i) => '<button onclick="tttClick(' + i + ')" class="glass-panel h-16 rounded-xl font-orbitron text-2xl ' + (c === 'X' ? 'text-brand-cyan' : 'text-brand-pink') + '">' + c + '</button>').join('') }
+		function tttEnd() { const m = $('tttMsg'); if (won(tb, 'X')) { m.innerText = 'You win!'; tOver = true } else if (won(tb, 'O')) { m.innerText = 'Computer wins!'; tOver = true } else if (tb.every(c => c)) { m.innerText = 'Draw!'; tOver = true } return tOver }
+		function tttClick(i) { if (tb[i] || tOver) return; tb[i] = 'X'; if (!tttEnd()) { const free = tb.map((c, j) => c ? -1 : j).filter(j => j >= 0); const tw = p => free.find(j => { const b = tb.slice(); b[j] = p; return won(b, p) }); const pick = tw('O') ?? tw('X') ?? (tb[4] ? free[Math.floor(Math.random() * free.length)] : 4); tb[pick] = 'O'; tttEnd() } tttRender() }
+		tttReset();
+	</script>
+</body>
+
+</html>
