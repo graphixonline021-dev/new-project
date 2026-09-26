@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -48,12 +47,12 @@ html{
 }
 
 body{
- background:#06070a;
- color:#e2e8f0;
+ background:#0d0f0d;
+ color:#f3efe9;
  background-image:
- radial-gradient(circle at 15% 20%,rgba(138,43,226,.12),transparent 40%),
- radial-gradient(circle at 85% 60%,rgba(0,242,254,.10),transparent 40%),
- radial-gradient(circle at 50% 90%,rgba(255,0,127,.08),transparent 50%);
+ radial-gradient(circle at 15% 18%,rgba(157,122,85,.18),transparent 22%),
+ radial-gradient(circle at 82% 30%,rgba(84,119,92,.16),transparent 24%),
+ radial-gradient(circle at 58% 82%,rgba(130,92,58,.14),transparent 28%);
  background-attachment:fixed
 }
 
@@ -61,6 +60,121 @@ body.white-theme{
  background:#ffffff;
  color:#111827;
  background-image:none
+}
+
+.netflix-shell{
+ background:linear-gradient(180deg,rgba(28,26,23,.9),rgba(16,17,15,.96));
+ border:1px solid rgba(214,198,171,.12);
+ box-shadow:0 18px 50px rgba(0,0,0,.35);
+}
+
+.net-flix-button,
+.hero-cta,
+.secondary-cta{
+ border-radius:9999px;
+ transition:all .25s ease;
+}
+
+.hero-cta{
+ background:linear-gradient(135deg,#c88b4a,#8d5b33);
+ box-shadow:0 10px 25px rgba(168,117,72,.35);
+}
+
+.secondary-cta{
+ background:rgba(243,239,233,.08);
+ border:1px solid rgba(243,239,233,.14);
+}
+
+.hero-cta:hover,
+.secondary-cta:hover,
+.net-flix-button:hover{
+ transform:translateY(-1px);
+ filter:brightness(1.06);
+}
+
+.section-title{
+ letter-spacing:.2em;
+ text-transform:uppercase;
+ font-size:.7rem;
+ color:#9ca3af;
+}
+
+.poster-card{
+ position:relative;
+ overflow:hidden;
+ border-radius:1rem;
+ border:1px solid rgba(255,255,255,.08);
+ background:#0f172a;
+ transition:transform .25s ease, border-color .25s ease;
+}
+
+.poster-card:hover{
+ transform:translateY(-5px);
+ border-color:rgba(0,242,254,.6);
+}
+
+.poster-card img{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.poster-card::after{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:linear-gradient(to top,rgba(3,4,8,.94),rgba(3,4,8,.12) 50%,rgba(3,4,8,.02));
+}
+
+.poster-info{
+ position:absolute;
+ inset:auto 0 0 0;
+ z-index:1;
+ padding:1rem;
+}
+
+.pill-tag{
+ display:inline-flex;
+ align-items:center;
+ gap:.4rem;
+ background:rgba(255,255,255,.08);
+ border:1px solid rgba(255,255,255,.12);
+ border-radius:9999px;
+ padding:.25rem .65rem;
+ font-size:.62rem;
+ letter-spacing:.12em;
+ text-transform:uppercase;
+ color:#e5e7eb;
+}
+
+.trending-row .poster-card{ height:270px; }
+
+.feature-card{
+ background:linear-gradient(180deg,rgba(21,24,35,.88),rgba(9,11,18,.96));
+ border:1px solid rgba(255,255,255,.08);
+ border-radius:1.25rem;
+ overflow:hidden;
+}
+
+.feature-card img{
+ height:270px;
+ width:100%;
+ object-fit:cover;
+}
+
+.progress-track{
+ height:4px;
+ background:rgba(255,255,255,.08);
+ border-radius:9999px;
+ overflow:hidden;
+}
+
+.progress-bar{
+ display:block;
+ height:100%;
+ border-radius:9999px;
+ background:linear-gradient(90deg,#00f2fe,#8a2be2);
 }
 
 body.white-theme .glass-panel,
@@ -95,7 +209,9 @@ body.white-theme ::-webkit-scrollbar-thumb{
  background:rgba(15,20,32,.68);
  backdrop-filter:blur(16px);
  -webkit-backdrop-filter:blur(16px);
- border:1px solid rgba(255,255,255,.08)
+ border:1px solid rgba(255,255,255,.08);
+ border-left:0;
+ border-right:0;
 }
 
 .glass-card{
@@ -112,8 +228,12 @@ body.white-theme ::-webkit-scrollbar-thumb{
  box-shadow:0 12px 35px -12px rgba(0,242,254,.4)
 }
 
+.text-brand-cyan{ color:#b7c9b0 !important }
+.text-brand-purple{ color:#c3a38b !important }
+.text-brand-pink{ color:#d4b195 !important }
+.text-brand-neonGreen{ color:#b6c88c !important }
 .neon-text{
- text-shadow:0 0 10px rgba(0,242,254,.65)
+ text-shadow:0 0 10px rgba(173,150,120,.45)
 }
 
 .neon-btn{
@@ -215,6 +335,184 @@ body.eye-protection{
  overflow:auto
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
 
 <body class="font-sans min-h-screen">
@@ -237,13 +535,15 @@ Multiverse Archives
 </div>
 </a>
 
-<div
- class="hidden lg:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2 items-center gap-6 font-rajdhani font-bold text-sm tracking-wider uppercase text-gray-300 whitespace-nowrap">
- <a href="#movies" class="hover:text-brand-cyan">Movies</a>
- <a href="#games" class="hover:text-brand-cyan">Play</a>
- <a href="#download" class="hover:text-brand-cyan">Download</a>
- <a href="#games" class="hover:text-brand-cyan">Live</a>
- 
+<div class="hidden lg:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2 items-center gap-4 xl:gap-6 font-rajdhani font-bold text-[11px] xl:text-sm tracking-[.18em] uppercase text-gray-300 whitespace-nowrap">
+ <a href="#" class="hover:text-[#f5c98b]">Home</a>
+ <a href="#movies" class="hover:text-[#f5c98b]">Movies</a>
+ <a href="#shows" class="hover:text-[#f5c98b]">Shows</a>
+ <a href="#games" class="hover:text-[#f5c98b]">Games</a>
+ <a href="#download" class="hover:text-[#f5c98b]">Downloads</a>
+ <a href="#lore" class="hover:text-[#f5c98b]">Lore</a>
+ <a href="#community" class="hover:text-[#f5c98b]">Community</a>
+ <a href="#live" class="hover:text-[#f5c98b]">Live</a>
 </div>
 
 <div class="flex gap-2">
@@ -269,73 +569,84 @@ Multiverse Archives
 </nav>
 
 
-<header class="max-w-7xl mx-auto px-4 lg:px-8 pt-8">
+<header class="w-full px-4 lg:px-8 pt-8 pb-4">
 
-<div class="rounded-3xl glass-panel p-7 md:p-12"
-style="background:linear-gradient(135deg,rgba(138,43,226,.27),rgba(6,7,10,.7) 60%,rgba(0,242,254,.14))">
+<div class="rounded-3xl glass-panel p-7 md:p-12 w-full min-h-[70vh] lg:min-h-[78vh] flex items-center border-l-0 border-r-0 netflix-shell"
+style="background:linear-gradient(135deg,rgba(125,93,68,.38),rgba(17,18,15,.8) 56%,rgba(93,124,94,.18))">
 
-<div class="grid lg:grid-cols-2 gap-10 items-center">
+<div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 items-center w-full">
 
 <div>
 
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/20 border border-brand-purple/40 text-brand-cyan text-xs font-bold mb-4">
-<i class="fa-solid fa-fire text-brand-pink"></i>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c88b4a]/15 border border-[#c88b4a]/35 text-[#f5c98b] text-xs font-bold mb-4">
+<i class="fa-solid fa-fire text-[#f5c98b]"></i>
 TRENDING MULTIVERSE LORE
 </div>
 
-<h1 class="font-orbitron text-3xl md:text-5xl font-black text-white leading-tight">
+<h1 class="font-orbitron text-3xl md:text-5xl lg:text-6xl font-black leading-tight text-white">
 EXPLORE THE
-<span class="bg-gradient-to-r from-brand-cyan via-blue-400 to-brand-purple bg-clip-text text-transparent">
+<span class="text-white block md:inline">
 ULTIMATE FANDOM
 </span>
 ARCHIVES
 </h1>
 
-<p class="text-gray-300 mt-5 mb-7">
+<p class="text-gray-300 mt-5 mb-7 max-w-xl text-lg leading-relaxed">
 Movies, characters, lore, browser games, downloads and live gaming communities — all inside one fandom hub.
 </p>
 
-<div class="flex flex-wrap gap-7 border-t border-white/10 pt-5">
+<div class="flex flex-wrap items-center gap-4 mt-5">
+<a href="#movies" class="hero-cta px-6 py-3 text-sm font-bold text-white inline-flex items-center gap-2">
+<i class="fa-solid fa-play"></i>
+Watch Now
+</a>
+<a href="#games" class="secondary-cta px-6 py-3 text-sm font-bold text-white inline-flex items-center gap-2">
+<i class="fa-solid fa-gamepad"></i>
+Play Hub
+</a>
+</div>
+
+<div class="flex flex-wrap gap-7 border-t border-white/10 pt-5 mt-7">
 
 <div>
 <span class="block font-orbitron text-xl text-brand-cyan">12.8K+</span>
-<span class="text-xs text-gray-400">CHARACTERS</span>
+<span class="text-xs text-gray-400 tracking-[.22em] uppercase">Characters</span>
 </div>
 
 <div>
 <span class="block font-orbitron text-xl text-brand-pink">850+</span>
-<span class="text-xs text-gray-400">LORE FILES</span>
+<span class="text-xs text-gray-400 tracking-[.22em] uppercase">Lore Files</span>
 </div>
 
 <div>
 <span class="block font-orbitron text-xl text-brand-purple">50+</span>
-<span class="text-xs text-gray-400">MOVIES</span>
+<span class="text-xs text-gray-400 tracking-[.22em] uppercase">Movies</span>
 </div>
 
 <div>
 <span class="block font-orbitron text-xl text-brand-neonGreen">LIVE</span>
-<span class="text-xs text-gray-400">GAMING HUBS</span>
+<span class="text-xs text-gray-400 tracking-[.22em] uppercase">Gaming Hubs</span>
 </div>
 
 </div>
 </div>
 
-<div class="float relative h-80 hidden md:block">
+<div class="float relative h-[360px] hidden md:block">
 
 <div class="absolute w-40 h-40 rounded-full bg-cyan-500/20 blur-3xl top-4 left-10"></div>
 <div class="absolute w-48 h-48 rounded-full bg-purple-600/20 blur-3xl bottom-0 right-0"></div>
 
-<div class="absolute inset-8 rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+<div class="absolute inset-8 rounded-[1.75rem] overflow-hidden border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
 <img
  src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=85"
  class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10"></div>
 
-<div class="absolute bottom-5 left-5">
-<span class="text-[10px] tracking-[.3em] text-brand-cyan uppercase">
+<div class="absolute bottom-5 left-5 right-5">
+<span class="text-[10px] tracking-[.3em] text-brand-cyan uppercase block mb-2">
 Fandom Verse
 </span>
-<h3 class="font-orbitron text-2xl text-white">
+<h3 class="font-orbitron text-2xl text-white leading-none">
 MULTIVERSE ONLINE
 </h3>
 </div>
@@ -347,60 +658,130 @@ MULTIVERSE ONLINE
 </div>
 </header>
 
+<main id="community" class="max-w-7xl mx-auto px-4 lg:px-8 py-8 space-y-10">
 
-<section class="max-w-7xl mx-auto px-4 lg:px-8 mt-10">
-
-<div class="flex justify-between items-center mb-5">
+<section id="lore">
+<div class="flex items-center justify-between mb-5">
 <div>
-<div class="text-brand-cyan text-xs font-bold tracking-[.3em] uppercase">
-Featured
+<div class="section-title">Featured</div>
+<h2 class="font-orbitron text-2xl text-white mt-2">Fandom Worlds</h2>
 </div>
-<h2 class="font-orbitron text-2xl text-white">
-FANDOM WORLDS
-</h2>
-</div>
+<a href="#movies" class="text-sm text-brand-cyan hover:text-white transition">Browse all</a>
 </div>
 
 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
 <div class="glass-card rounded-2xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
-class="w-full h-48 object-cover">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover">
 <div class="p-4">
-<span class="text-brand-pink text-xs uppercase">Anime</span>
-<h3 class="font-orbitron text-white mt-1">Power Archives</h3>
+<span class="text-brand-pink text-xs uppercase tracking-[.2em]">Anime</span>
+<h3 class="font-orbitron text-white mt-2">Power Archives</h3>
 </div>
 </div>
 
 <div class="glass-card rounded-2xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
-class="w-full h-48 object-cover">
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover">
 <div class="p-4">
-<span class="text-brand-purple text-xs uppercase">Gaming</span>
-<h3 class="font-orbitron text-white mt-1">Boss Battles</h3>
+<span class="text-brand-purple text-xs uppercase tracking-[.2em]">Gaming</span>
+<h3 class="font-orbitron text-white mt-2">Boss Battles</h3>
 </div>
 </div>
 
 <div class="glass-card rounded-2xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80"
-class="w-full h-48 object-cover">
+<img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover">
 <div class="p-4">
-<span class="text-brand-pink text-xs uppercase">Heroes</span>
-<h3 class="font-orbitron text-white mt-1">City Legends</h3>
+<span class="text-brand-pink text-xs uppercase tracking-[.2em]">Heroes</span>
+<h3 class="font-orbitron text-white mt-2">City Legends</h3>
 </div>
 </div>
 
 <div class="glass-card rounded-2xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
-class="w-full h-48 object-cover">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover">
 <div class="p-4">
-<span class="text-brand-neonGreen text-xs uppercase">Sci-Fi</span>
-<h3 class="font-orbitron text-white mt-1">Future Arcs</h3>
+<span class="text-brand-neonGreen text-xs uppercase tracking-[.2em]">Sci-Fi</span>
+<h3 class="font-orbitron text-white mt-2">Future Arcs</h3>
 </div>
 </div>
 
 </div>
 </section>
+
+<section id="shows">
+<div class="flex items-center justify-between mb-5">
+<div>
+<div class="section-title">Trending Now</div>
+<h2 class="font-orbitron text-2xl text-white mt-2">Popular This Week</h2>
+</div>
+<a href="#download" class="text-sm text-gray-300 hover:text-white transition">More</a>
+</div>
+
+<div class="trending-row grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+<div class="poster-card">
+<img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=80" alt="">
+<div class="poster-info">
+<span class="pill-tag">Action</span>
+<h3 class="font-orbitron text-white mt-3 text-xl">Neon Strike</h3>
+</div>
+</div>
+
+<div class="poster-card">
+<img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=900&q=80" alt="">
+<div class="poster-info">
+<span class="pill-tag">Adventure</span>
+<h3 class="font-orbitron text-white mt-3 text-xl">Nova Dawn</h3>
+</div>
+</div>
+
+<div class="poster-card">
+<img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=900&q=80" alt="">
+<div class="poster-info">
+<span class="pill-tag">Fantasy</span>
+<h3 class="font-orbitron text-white mt-3 text-xl">Shadow Realm</h3>
+</div>
+</div>
+
+<div class="poster-card">
+<img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="">
+<div class="poster-info">
+<span class="pill-tag">Mystery</span>
+<h3 class="font-orbitron text-white mt-3 text-xl">Parallel City</h3>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="live" class="grid lg:grid-cols-3 gap-4">
+<div class="feature-card">
+<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80" alt="">
+<div class="p-5">
+<div class="section-title mb-2">Continue Watching</div>
+<h3 class="font-orbitron text-white text-xl">Lost Signal</h3>
+<div class="mt-3 progress-track"><span class="progress-bar" style="width:63%"></span></div>
+<p class="text-xs text-gray-400 mt-2">63% watched · 1h 42m left</p>
+</div>
+</div>
+
+<div class="feature-card">
+<img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80" alt="">
+<div class="p-5">
+<div class="section-title mb-2">Downloads</div>
+<h3 class="font-orbitron text-white text-xl">Night Circuit</h3>
+<p class="text-sm text-gray-300 mt-2">Save episodes for offline viewing and travel-safe fandom binges.</p>
+</div>
+</div>
+
+<div class="feature-card">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="">
+<div class="p-5">
+<div class="section-title mb-2">Live Hub</div>
+<h3 class="font-orbitron text-white text-xl">Game Night</h3>
+<p class="text-sm text-gray-300 mt-2">New tournaments, community streams, and co-op event drops every evening.</p>
+</div>
+</div>
+</section>
+</main>
 
 
 <section id="movies" class="max-w-7xl mx-auto px-4 lg:px-8 mt-20">
@@ -687,6 +1068,431 @@ SUBMIT ARCHIVE
 class="fixed bottom-5 right-5 z-[200] translate-y-20 opacity-0 transition-all glass-panel rounded-xl px-5 py-3">
 <span id="toastText" class="text-sm"></span>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script>
